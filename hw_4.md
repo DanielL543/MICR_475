@@ -18,7 +18,7 @@ a + b
 
 ``` r
 #using the sum function to calculate the sum of the two assigned variables
-sum(a:b)
+sum(a, b)
 ```
 
     ## [1] 5
