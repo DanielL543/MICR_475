@@ -1,0 +1,100 @@
+---
+title: "Homework 5"
+output: github_document
+---
+We first want to load in the packages and look at the dataset for diamonds.
+
+```{r, message=FALSE}
+library(tidyverse)
+library(dplyr)
+print(diamonds)
+```
+# Group Data and show the count
+```{r}
+diamonds %>%
+  group_by(cut) %>%
+  count()
+```
+
+# Get a random subset of data
+```{r}
+# this creates a random subset of data and condenses it to 1%
+condensed_diamonds <- sample_frac(diamonds, 0.01) 
+# view the condensed data
+print(condensed_diamonds)
+```
+# Calculating the average size of 100 largest diamonds
+```{r}
+# check to make sure we have 100 in each clarity
+condensed_diamonds %>%
+  group_by(clarity) %>%
+  count()
+```
+Since the condensed subset of data does not have 100 diamonds in each category, we will use the original data.
+```{r}
+diamonds %>%
+  group_by(clarity) %>%
+  count()
+```
+We now have the amount of data needed to proceed. We will now calculate the average size of the 100 largest diamonds in each category. Before calculating the average size, we must first get the data for each clarity.
+```{r}
+# create new data set for 100 largest diamonds in each category
+large_diamonds <- diamonds %>% 
+  # we first want to arrange the diamonds data in order from highest to lowest
+  arrange(desc(carat)) %>%
+  # now that is has been sorted, we can then group them by clarity
+  group_by(clarity) %>%
+  # we then only want 100 sizes so we slice them out
+  slice(1:100)
+# print out the new data
+large_diamonds 
+```
+
+Now that we have the new dataset, we can calculate the average size in each category
+```{r}
+large_diamonds %>%
+  # we need to group them so that we can calculate the average for each category
+  group_by(clarity) %>%
+  # now that they are grouped, we can calculate the average of each
+  summarise(average.size = mean(carat, na.rm = TRUE))
+```
+
+# Make two scatter plots
+
+## Plot 1: X vs Y
+
+We first need to make a scatter plot that contains the x vs z dimension of the diamonds data set.
+```{r}
+ggplot(diamonds) +
+  geom_point(mapping = aes(x = x, y = y)) +
+  labs(title = "Diamond Dimension: X vs. Y", x = "Length (x)", y = "Height (y)")
+```
+
+We can see from the plot that there is a few outliers that we need to get rid of in order to make a better plot.
+
+```{r}
+# this filters out the outliers within this dataset
+x_y_diamonds <- diamonds %>%
+  filter(x > 3 & y < 20)
+ggplot(x_y_diamonds) +
+  geom_point(mapping = aes(x = x, y = y)) +
+  labs(title = "Diamond dimensions: X vs Y", x = "Length (X)", y = "Height (y)")
+```
+
+## Plot 2: X vs Z
+
+We now need to make a plot of X vs Z. 
+```{r}
+ggplot(diamonds) +
+  geom_point(mapping = aes(x = x, y = z)) +
+  labs(title = "Diamond Dimension: X vs. Z", x = "Length (x)", y = "Width (z)")
+```
+
+We run into the same problem as before so we must filter out the outliers
+```{r}
+x_z_diamonds <- diamonds %>%
+  filter(x > 3 & z < 10 & z > 1)
+ggplot(x_z_diamonds) +
+  geom_point(mapping = aes(x = x, y = z)) +
+  labs(title = "Diamond dimensions: X vs Z", x = "Length (X)", y = "Width (z)")
+```
