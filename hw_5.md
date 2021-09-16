@@ -55,16 +55,16 @@ print(condensed_diamonds)
     ## # A tibble: 539 x 10
     ##    carat cut       color clarity depth table price     x     y     z
     ##    <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
-    ##  1  0.34 Ideal     D     VVS1     61.2    57  1272  4.51  4.54  2.77
-    ##  2  0.26 Ideal     E     VVS2     62.9    58   554  4.02  4.06  2.54
-    ##  3  0.5  Premium   E     SI1      62.3    58  1316  5.09  5.15  3.19
-    ##  4  0.28 Very Good E     VVS1     61.1    60   646  4.17  4.21  2.56
-    ##  5  0.42 Ideal     D     VS1      62.1    56  1235  4.82  4.78  2.98
-    ##  6  0.41 Good      H     SI1      64.3    54   748  4.72  4.68  3.02
-    ##  7  0.31 Ideal     E     VVS2     61.7    56  1046  4.36  4.33  2.68
-    ##  8  0.33 Ideal     E     VS1      61.5    56   692  4.45  4.5   2.75
-    ##  9  0.36 Premium   E     VS2      62.5    58   684  4.52  4.57  2.84
-    ## 10  0.3  Ideal     E     VVS2     61.8    56  1013  4.35  4.33  2.68
+    ##  1  0.72 Premium   F     SI1      59.9    58  2742  5.85  5.81  3.49
+    ##  2  1.02 Ideal     E     SI2      62      59  4645  6.43  6.4   3.98
+    ##  3  0.72 Premium   E     SI1      62.1    58  2385  5.72  5.69  3.54
+    ##  4  0.34 Very Good F     VS2      62.9    58   686  4.44  4.46  2.8 
+    ##  5  1.54 Ideal     G     VVS1     60.8    57 16316  7.49  7.45  4.54
+    ##  6  1.15 Good      F     SI2      63.8    57  4437  6.65  6.6   4.23
+    ##  7  1.01 Ideal     E     SI2      61.9    56  4921  6.46  6.43  3.99
+    ##  8  0.35 Ideal     H     SI1      61.5    56   523  4.56  4.58  2.81
+    ##  9  0.81 Ideal     H     SI1      62.1    54  2435  6     6.02  3.73
+    ## 10  1    Very Good F     SI2      61.3    61  4372  6.36  6.39  3.91
     ## # ... with 529 more rows
 
 # Calculating the average size of 100 largest diamonds
@@ -80,14 +80,14 @@ condensed_diamonds %>%
     ## # Groups:   clarity [8]
     ##   clarity     n
     ##   <ord>   <int>
-    ## 1 I1          8
-    ## 2 SI2        83
-    ## 3 SI1       135
-    ## 4 VS2       129
-    ## 5 VS1        81
+    ## 1 I1          5
+    ## 2 SI2        75
+    ## 3 SI1       127
+    ## 4 VS2       130
+    ## 5 VS1        92
     ## 6 VVS2       48
-    ## 7 VVS1       37
-    ## 8 IF         18
+    ## 7 VVS1       39
+    ## 8 IF         23
 
 Since the condensed subset of data does not have 100 diamonds in each
 category, we will use the original data.
@@ -177,8 +177,8 @@ of the diamonds data set.
 
 ``` r
 ggplot(diamonds) +
-  geom_point(mapping = aes(x = x, y = y)) +
-  labs(title = "Diamond Dimension: X vs. Y", x = "Length (x)", y = "Height (y)")
+  geom_point(mapping = aes(x = y, y = x)) +
+  labs(title = "Diamond Dimension: X vs. Y", x = "Length (y)", y = "Width (x)")
 ```
 
 ![](hw_5_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
@@ -191,8 +191,8 @@ get rid of in order to make a better plot.
 x_y_diamonds <- diamonds %>%
   filter(x > 3 & y < 20)
 ggplot(x_y_diamonds) +
-  geom_point(mapping = aes(x = x, y = y)) +
-  labs(title = "Diamond dimensions: X vs Y", x = "Length (X)", y = "Height (y)")
+  geom_point(mapping = aes(x = y, y = x)) +
+  labs(title = "Diamond dimensions: X vs Y", x = "Length (y)", y = "Width (x)")
 ```
 
 ![](hw_5_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
@@ -203,8 +203,8 @@ We now need to make a plot of X vs Z.
 
 ``` r
 ggplot(diamonds) +
-  geom_point(mapping = aes(x = x, y = z)) +
-  labs(title = "Diamond Dimension: X vs. Z", x = "Length (x)", y = "Width (z)")
+  geom_point(mapping = aes(x = z, y = x)) +
+  labs(title = "Diamond Dimension: X vs. Z", x = "Depth (z)", y = "Width (x)")
 ```
 
 ![](hw_5_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
@@ -216,8 +216,8 @@ outliers
 x_z_diamonds <- diamonds %>%
   filter(x > 3 & z < 10 & z > 1)
 ggplot(x_z_diamonds) +
-  geom_point(mapping = aes(x = x, y = z)) +
-  labs(title = "Diamond dimensions: X vs Z", x = "Length (X)", y = "Width (z)")
+  geom_point(mapping = aes(x = z, y = x)) +
+  labs(title = "Diamond dimensions: X vs Z", x = "Depth (z)", y = "Width (x)")
 ```
 
 ![](hw_5_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
