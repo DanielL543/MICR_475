@@ -55,16 +55,16 @@ print(condensed_diamonds)
     ## # A tibble: 539 x 10
     ##    carat cut       color clarity depth table price     x     y     z
     ##    <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
-    ##  1  0.72 Premium   F     SI1      59.9    58  2742  5.85  5.81  3.49
-    ##  2  1.02 Ideal     E     SI2      62      59  4645  6.43  6.4   3.98
-    ##  3  0.72 Premium   E     SI1      62.1    58  2385  5.72  5.69  3.54
-    ##  4  0.34 Very Good F     VS2      62.9    58   686  4.44  4.46  2.8 
-    ##  5  1.54 Ideal     G     VVS1     60.8    57 16316  7.49  7.45  4.54
-    ##  6  1.15 Good      F     SI2      63.8    57  4437  6.65  6.6   4.23
-    ##  7  1.01 Ideal     E     SI2      61.9    56  4921  6.46  6.43  3.99
-    ##  8  0.35 Ideal     H     SI1      61.5    56   523  4.56  4.58  2.81
-    ##  9  0.81 Ideal     H     SI1      62.1    54  2435  6     6.02  3.73
-    ## 10  1    Very Good F     SI2      61.3    61  4372  6.36  6.39  3.91
+    ##  1  0.4  Very Good F     SI1      62.8    59   737  4.71  4.72  2.96
+    ##  2  2.19 Premium   H     SI1      62.3    62 15801  8.27  8.25  5.15
+    ##  3  1.17 Ideal     G     VS2      62      57  7423  6.74  6.78  4.19
+    ##  4  0.58 Ideal     E     SI1      61.5    55  1758  5.39  5.34  3.3 
+    ##  5  0.61 Premium   G     VS1      61.7    60  1704  5.46  5.4   3.35
+    ##  6  1.01 Very Good E     SI2      59.6    61  4355  6.56  6.59  3.92
+    ##  7  1.03 Very Good D     SI2      62.8    56  4679  6.43  6.46  4.05
+    ##  8  0.52 Ideal     E     VS1      61.3    56  1886  5.18  5.22  3.19
+    ##  9  1.09 Ideal     G     VS2      61.2    56  7357  6.62  6.64  4.06
+    ## 10  2.18 Very Good G     SI2      63.3    59 12377  8.25  8.2   5.2 
     ## # ... with 529 more rows
 
 # Calculating the average size of 100 largest diamonds
@@ -80,14 +80,14 @@ condensed_diamonds %>%
     ## # Groups:   clarity [8]
     ##   clarity     n
     ##   <ord>   <int>
-    ## 1 I1          5
-    ## 2 SI2        75
-    ## 3 SI1       127
-    ## 4 VS2       130
-    ## 5 VS1        92
-    ## 6 VVS2       48
-    ## 7 VVS1       39
-    ## 8 IF         23
+    ## 1 I1          7
+    ## 2 SI2       107
+    ## 3 SI1       133
+    ## 4 VS2       133
+    ## 5 VS1        72
+    ## 6 VVS2       53
+    ## 7 VVS1       18
+    ## 8 IF         16
 
 Since the condensed subset of data does not have 100 diamonds in each
 category, we will use the original data.
@@ -178,7 +178,7 @@ of the diamonds data set.
 ``` r
 ggplot(diamonds) +
   geom_point(mapping = aes(x = y, y = x)) +
-  labs(title = "Diamond Dimension: X vs. Y", x = "Length (y)", y = "Width (x)")
+  labs(title = "Diamond Dimension: X vs. Y", x = "Width (y)", y = "Length (x)")
 ```
 
 ![](hw_5_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
@@ -192,7 +192,7 @@ x_y_diamonds <- diamonds %>%
   filter(x > 3 & y < 20)
 ggplot(x_y_diamonds) +
   geom_point(mapping = aes(x = y, y = x)) +
-  labs(title = "Diamond dimensions: X vs Y", x = "Length (y)", y = "Width (x)")
+  labs(title = "Diamond dimensions: X vs Y", x = "Width (y)", y = "Length (x)")
 ```
 
 ![](hw_5_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
@@ -204,7 +204,7 @@ We now need to make a plot of X vs Z.
 ``` r
 ggplot(diamonds) +
   geom_point(mapping = aes(x = z, y = x)) +
-  labs(title = "Diamond Dimension: X vs. Z", x = "Depth (z)", y = "Width (x)")
+  labs(title = "Diamond Dimension: X vs. Z", x = "Depth (z)", y = "Length (x)")
 ```
 
 ![](hw_5_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
@@ -217,7 +217,7 @@ x_z_diamonds <- diamonds %>%
   filter(x > 3 & z < 10 & z > 1)
 ggplot(x_z_diamonds) +
   geom_point(mapping = aes(x = z, y = x)) +
-  labs(title = "Diamond dimensions: X vs Z", x = "Depth (z)", y = "Width (x)")
+  labs(title = "Diamond dimensions: X vs Z", x = "Depth (z)", y = "Length (x)")
 ```
 
 ![](hw_5_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->

@@ -67,7 +67,7 @@ We first need to make a scatter plot that contains the x vs z dimension of the d
 ```{r}
 ggplot(diamonds) +
   geom_point(mapping = aes(x = y, y = x)) +
-  labs(title = "Diamond Dimension: X vs. Y", x = "Length (y)", y = "Width (x)")
+  labs(title = "Diamond Dimension: X vs. Y", x = "Width (y)", y = "Length (x)")
 ```
 
 We can see from the plot that there is a few outliers that we need to get rid of in order to make a better plot.
@@ -78,7 +78,7 @@ x_y_diamonds <- diamonds %>%
   filter(x > 3 & y < 20)
 ggplot(x_y_diamonds) +
   geom_point(mapping = aes(x = y, y = x)) +
-  labs(title = "Diamond dimensions: X vs Y", x = "Length (y)", y = "Width (x)")
+  labs(title = "Diamond dimensions: X vs Y", x = "Width (y)", y = "Length (x)")
 ```
 
 ## Plot 2: X vs Z
@@ -87,7 +87,7 @@ We now need to make a plot of X vs Z.
 ```{r}
 ggplot(diamonds) +
   geom_point(mapping = aes(x = z, y = x)) +
-  labs(title = "Diamond Dimension: X vs. Z", x = "Depth (z)", y = "Width (x)")
+  labs(title = "Diamond Dimension: X vs. Z", x = "Depth (z)", y = "Length (x)")
 ```
 
 We run into the same problem as before so we must filter out the outliers
@@ -96,5 +96,5 @@ x_z_diamonds <- diamonds %>%
   filter(x > 3 & z < 10 & z > 1)
 ggplot(x_z_diamonds) +
   geom_point(mapping = aes(x = z, y = x)) +
-  labs(title = "Diamond dimensions: X vs Z", x = "Depth (z)", y = "Width (x)")
+  labs(title = "Diamond dimensions: X vs Z", x = "Depth (z)", y = "Length (x)")
 ```
