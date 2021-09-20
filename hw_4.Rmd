@@ -26,10 +26,9 @@ sum(a, b)
 library(tidyverse)
 library(dplyr)
 library(nycflights13)
-nycflights13::flights
 
 #This filters the American Airlines flights and assigns it to "AA_flights"
-(AA_flights <- filter(flights, carrier == "AA"))
+AA_flights <- filter(flights, carrier == "AA")
 
 ggplot(data = AA_flights) +
   geom_point(mapping = aes(x = dep_delay, y = arr_delay)) +
