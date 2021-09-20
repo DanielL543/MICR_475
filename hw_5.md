@@ -7,23 +7,7 @@ diamonds.
 ``` r
 library(tidyverse)
 library(dplyr)
-print(diamonds)
 ```
-
-    ## # A tibble: 53,940 x 10
-    ##    carat cut       color clarity depth table price     x     y     z
-    ##    <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
-    ##  1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
-    ##  2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
-    ##  3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
-    ##  4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
-    ##  5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
-    ##  6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
-    ##  7  0.24 Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
-    ##  8  0.26 Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
-    ##  9  0.22 Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
-    ## 10  0.23 Very Good H     VS1      59.4    61   338  4     4.05  2.39
-    ## # ... with 53,930 more rows
 
 # Group Data and show the count
 
@@ -55,16 +39,16 @@ print(condensed_diamonds)
     ## # A tibble: 539 x 10
     ##    carat cut       color clarity depth table price     x     y     z
     ##    <dbl> <ord>     <ord> <ord>   <dbl> <dbl> <int> <dbl> <dbl> <dbl>
-    ##  1  0.4  Very Good F     SI1      62.8    59   737  4.71  4.72  2.96
-    ##  2  2.19 Premium   H     SI1      62.3    62 15801  8.27  8.25  5.15
-    ##  3  1.17 Ideal     G     VS2      62      57  7423  6.74  6.78  4.19
-    ##  4  0.58 Ideal     E     SI1      61.5    55  1758  5.39  5.34  3.3 
-    ##  5  0.61 Premium   G     VS1      61.7    60  1704  5.46  5.4   3.35
-    ##  6  1.01 Very Good E     SI2      59.6    61  4355  6.56  6.59  3.92
-    ##  7  1.03 Very Good D     SI2      62.8    56  4679  6.43  6.46  4.05
-    ##  8  0.52 Ideal     E     VS1      61.3    56  1886  5.18  5.22  3.19
-    ##  9  1.09 Ideal     G     VS2      61.2    56  7357  6.62  6.64  4.06
-    ## 10  2.18 Very Good G     SI2      63.3    59 12377  8.25  8.2   5.2 
+    ##  1  1    Very Good F     SI1      61.8    58  5058  6.37  6.44  3.96
+    ##  2  0.9  Very Good G     SI2      64.2    56  3123  6.04  6.11  3.9 
+    ##  3  0.3  Ideal     G     VVS1     61.4    56   945  4.34  4.32  2.66
+    ##  4  1.07 Very Good H     VS1      62.5    56  6262  6.52  6.55  4.08
+    ##  5  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+    ##  6  0.4  Premium   G     VVS2     62.7    59  1050  4.72  4.69  2.95
+    ##  7  0.31 Ideal     F     VS2      61.9    55   802  4.35  4.31  2.68
+    ##  8  0.73 Very Good F     VS1      61.8    59  2843  5.73  5.79  3.56
+    ##  9  0.59 Ideal     F     VS2      62.9    55  1743  5.39  5.32  3.37
+    ## 10  0.43 Ideal     G     SI1      61.7    55   818  4.89  4.87  3.01
     ## # ... with 529 more rows
 
 # Calculating the average size of 100 largest diamonds
@@ -80,14 +64,14 @@ condensed_diamonds %>%
     ## # Groups:   clarity [8]
     ##   clarity     n
     ##   <ord>   <int>
-    ## 1 I1          7
-    ## 2 SI2       107
-    ## 3 SI1       133
-    ## 4 VS2       133
-    ## 5 VS1        72
-    ## 6 VVS2       53
-    ## 7 VVS1       18
-    ## 8 IF         16
+    ## 1 I1          8
+    ## 2 SI2       105
+    ## 3 SI1       125
+    ## 4 VS2       115
+    ## 5 VS1        89
+    ## 6 VVS2       50
+    ## 7 VVS1       30
+    ## 8 IF         17
 
 Since the condensed subset of data does not have 100 diamonds in each
 category, we will use the original data.

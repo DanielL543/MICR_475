@@ -7,7 +7,6 @@ We first want to load in the packages and look at the dataset for diamonds.
 ```{r, message=FALSE}
 library(tidyverse)
 library(dplyr)
-print(diamonds)
 ```
 # Group Data and show the count
 ```{r}
