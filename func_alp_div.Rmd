@@ -1,0 +1,54 @@
+---
+title: "Function: Define Alpha Diversity Indices"
+output: github_document
+---
+# Purpose of the function
+This is a function to calculate the alpha diversity of a given OTU table. It will calculate the Shannon, Simpson, Chao1, and ACE indices.
+
+## Load the needed libraries and convert the .csv  file into a data set
+```{r, message=FALSE}
+library(tidyverse)
+library(vegan)
+library(phyloseq)
+
+OTU_data <- read.csv("otutable_grazing.csv")
+```
+
+# Function
+After converting the .csv file into a data set, the user is able to use this function to obtain the alpha indices.
+
+```{r}
+#function to calculate the alpha indices for a given OTU table
+calc_alpha_indices <- function(data){
+  #make a data frame with just the sample IDs
+  sample.ID <- data[, 1]
+  samples <- data.frame(sample.ID)
+  samples
+  
+  #data frame with the shannon data and the sample IDs
+  shannon.indices <- diversity(data[, -1], index = "shannon", MARGIN = 1, base = exp(1))
+  shannon_index <- data.frame(shannon.indices)
+  shannon_data <- cbind(samples, shannon_index)
+  
+  #data frame which includes both shannon and simpson
+  simpson.indices <- diversity(data[, -1], index = "simpson", MARGIN = 1, base = exp(1))
+  simpson_index <- data.frame(simpson.indices)
+  simpson_data <- cbind(shannon_data, simpson_index)
+  
+  #calculate chao and ACE indices and add them to a final matrix 
+  chao.out <- estimateR(data[, -1])
+  chao_index <- data.frame(chao.out)
+  chao_transpose <- t(chao_index)
+  final_matrix <- cbind(simpson_data, chao_transpose)
+  
+  return(final_matrix)
+}
+```
+
+Example of running the function and assigning the output to "alpha_matrix"
+
+```{r}
+#using the function to create a matrix called alpha_matrix
+(alpha_matrix <- calc_alpha_indices(OTU_data))
+```
+
